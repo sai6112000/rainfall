@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Prediction</title>
+</head>
+<body style="background-color: rgb(165, 150, 193);;">
+    <div>
+        <nav id="navbar" style="padding: 10px;">
+            <ul>
+                <li class="item"><a href="http://127.0.0.1:8000/">Home</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/#services-container">Services</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/search">Prediction</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/filter">Historic</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/charts">Charts</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="header">
+            <center>
+                <h1>PREDICTOR</h1>
+            </center></div>
+        
+        <center>
+            <div class="form">
+           
+                <form method="post" action="/charts/res" enctype="multipart/form-data">
+                {% csrf_token %}
+                <center>
+
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="location form-input" style="width:600px;" id="location" name="location" aria-label="Location">
+                                <option selected value=-1>Select Location</option>
+                                <option value= 0>Adelaide</option>
+                                <option value= 1>Albany</option>
+                                <option value= 2>Albury</option>
+                                <option value= 3>AliceSprings</option>
+                                <option value= 4>BadgerysCreek</option>
+                                <option value= 5>Ballarat</option>
+                                <option value= 6>Bendigo</option>
+                                <option value= 7>Brisbane</option>
+                                <option value= 8>Cairns</option>
+                                <option value= 9>Cobar</option>
+                                <option value= 10>CoffsHarbour</option>
+                                <option value= 11>Dartmoor</option>
+                                <option value= 12>Darwin</option>
+                                <option value= 13>GoldCoast</option>
+                                <option value= 14>Hobart</option>
+                                <option value= 15>Katherine</option>
+                                <option value= 16>Launceston</option>
+                                <option value= 17>Melbourne</option>
+                                <option value= 18>Melbourne Airport</option>
+                                <option value= 19>Mildura</option>
+                                <option value= 20>Moree</option>
+                                <option value= 21>MountGambier</option>
+                                <option value= 22>MountGinini</option>
+                                <option value= 23>Newcastle	</option>
+                                <option value= 24>Nhil</option>
+                                <option value= 25>NorahHead</option>
+                                <option value= 26>NorfolkIsland</option>
+                                <option value= 27>Nuriootpa</option>
+                                <option value= 28>PearceRAAF</option>
+                                <option value= 29>Penrith</option>
+                                <option value= 30>Perth</option>
+                                <option value= 31>Perth Airport</option>
+                                <option value= 32>Portland</option>
+                                <option value= 33>Richmond</option>
+                                <option value= 34>Sale</option>
+                                <option value= 35>Salmon Gums</option>
+                                <option value= 36>Sydney</option>
+                                <option value= 37>Sydney Airport</option>
+                                <option value= 38>Townsville</option>
+                                <option value= 39>Tuggeranong</option>
+                                <option value= 40>Uluru</option>
+                                <option value= 41>WaggaWagga</option>
+                                <option value= 42>Walpole</option>
+                                <option value= 43>Watsonia</option>
+                                <option value= 44>William Town</option>
+                                <option value= 45>Witchcliffe</option>
+                                <option value= 46>Wollongong</option>
+                                <option value= 47>Woomera</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="winddir9am form-input" style="width:600px;" id="year" name="year" aria-label="Select year">
+                                <option selected value=-1>Select Year</option>
+                                <option value= 0>Average Temperature</option>
+                                <option value= 1>Annual Rainfall</option>
+                                <option value= 2>Wind Gust Speed</option>
+                                <option value= 3>Wind Speed Morning</option>
+                                <option value= 4>Wind Speed Afternoon</option>
+                                <option value= 5>Humidity Morning</option>
+                                <option value= 6>Humidity Afternoon</option>
+                                <option value= 11>Average Humidity</option>
+                                <option value= 7>Pressure Morning</option>
+                                <option value= 8>Pressure Afternoon</option>
+                                <option value= 12>Average Pressure</option>
+                                <option value= 9>Average temp morning</option>
+                                <option value= 10>Average temp afternoon</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    
+                </center><br>
+                <button type="submit" class="btn btn-sm btn-dark" name="upload">Submit</button>
+                <button type="reset" class="btn btn-sm btn-dark">Reset</button>
+                <br>
+                
+                </form>
+                <br>
+                </div>
+                </section>
+                <p id="result"></p>
+                <div style="display: none;">
+                    <p class="data1" name="t2008" id="t2008">{{t2008}}</p>
+                    <p class="data1" name="t2009" id="t2009">{{t2009}}</p>
+                    <p class="data1" name="t2010" id="t2010">{{t2010}}</p>
+                    <p class="data1" name="t2011" id="t2011">{{t2011}}</p>
+                    <p class="data1" name="t2012" id="t2012">{{t2012}}</p>
+                    <p class="data1" name="t2013" id="t2013">{{t2013}}</p>
+                    <p class="data1" name="t2014" id="t2014">{{t2014}}</p>
+                    <p class="data1" name="t2015" id="t2015">{{t2015}}</p>
+                    <p class="data1" name="t2016" id="t2016">{{t2016}}</p>
+                    <p class="data1" name="t2017" id="t2017">{{t2017}}</p>
+                </div>
+                <h1 style="color: white;">{{loc}}</h1>
+                <canvas id="myChart"></canvas>
+                <script>
+
+                    var selectElement = document.getElementById("year");
+                    let selectedOptionValue = parseInt(selectElement.value);
+                    console.log(selectedOptionValue);
+                    var mm="";
+                    let t8=parseInt(document.getElementById("t2008").textContent);
+                    let t9=parseInt(document.getElementById("t2009").textContent);
+                    let t10=parseInt(document.getElementById("t2010").textContent);
+                    let t11=parseInt(document.getElementById("t2011").textContent);
+                    let t12=parseInt(document.getElementById("t2012").textContent);
+                    let t13=parseInt(document.getElementById("t2013").textContent);
+                    let t14=parseInt(document.getElementById("t2014").textContent);
+                    let t15=parseInt(document.getElementById("t2015").textContent);
+                    let t16=parseInt(document.getElementById("t2016").textContent);
+                    let t17=parseInt(document.getElementById("t2017").textContent);
+                    function createBarChart(data, labels) {
+
+                      const chart = new Chart("myChart", {
+                        type: "bar",
+                        data: {
+                          labels: labels,
+                          datasets: [
+                            {
+                              label: "Bar Chart",
+                              data: data,
+                              backgroundColor: [
+                                "rgba(255, 99, 132, 0.7)",
+                                "rgba(54, 162, 235, 0.7)",
+                                "rgba(255, 206, 86, 0.7)",
+                                "rgba(75, 192, 192, 0.7)",
+                                "rgba(153, 102, 255, 0.7)",
+                                "rgba(255, 159, 64, 0.7)",
+                              ],
+                              borderColor: [
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)",
+                              ],
+                              borderWidth: 1,
+                            },
+                          ],
+                        },
+                        options: {
+                          responsive: true,
+                          scales: {
+                            yAxes: [
+                              {
+                                ticks: {
+                                  beginAtZero: true,
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      });
+                    }
+              
+                    const data = [t8, t9, t10, t11, t12, t13, t14, t15, t16, t17];
+                    const labels = ["2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"];
+              
+                    createBarChart(data, labels);
+                  </script>
+              
+            </center>
+    </div>
+    
+</body>
+</html>
+
+
+
+<style>
+    body{
+     background: url("./static/dict.jpg")no-repeat center center/cover;
+    }
+    .form-input{
+        border:2px solid black;
+        width:250px;
+        border-radius: 8px;
+        height:80px;
+        font-weight: bold;
+        font-size:20px;
+        margin:10px;
+    }
+    button{
+        margin: 10px;
+        height: 70px;
+        width: 120px;
+        border: 3px solid black;
+        border-radius: 15px;
+        font-weight: bold;
+    }
+    .header{
+        height: 90px;
+        border: 2px solid blueviolet;
+        border-radius: 20px;
+        text-shadow: 5px 5px violet;
+        margin: 20px;
+        background-color:aqua ;    
+    }
+    .data1{
+        height:auto;
+        width:auto;
+        border-radius: 10px;
+        font-weight: bolder;
+        font-size:20px;
+    }
+
+    #navbar{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+}
+
+#navbar::before{
+    content: "";
+    background-color: black;
+    position: absolute;
+    top:0px;
+    left:0px;
+    height: 100%;
+    width:100%;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+#logo{
+    margin: 10px 34px;
+}
+
+#logo img{
+    height: 59px;
+    margin: 3px 6px;
+}
+
+#navbar ul{
+    display: flex;
+    font-family: 'Baloo Bhai', cursive;
+}
+
+#navbar ul li{ 
+    list-style: none;
+    font-size: 1.3rem;
+}
+
+#navbar ul li a{
+    color: white;
+    display: block;
+    padding: 3px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+#navbar ul li a:hover{
+    color: black;
+    background-color: white;
+}
+</style>

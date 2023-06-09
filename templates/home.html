@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+</head>
+<body style="background-color: rgb(60, 38, 105);">
+    <div>
+        <nav id="navbar" style="padding: 10px;">
+            <ul>
+                <li class="item"><a href="#home">Home</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/#services-container">Services</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/search">Prediction</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/filter">Historic</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/charts">Charts</a></li>
+                <li class="item"><a href="http://127.0.0.1:8000/#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="header">
+            <center>
+                <h1>PREDICTOR</h1>
+            </center></div>
+        
+        <center>
+            <div class="form">
+           
+                <form method="post" action="/search/res" enctype="multipart/form-data">
+                {% csrf_token %}
+                <center>
+                    
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="mintemp" id="name" placeholder="enter a MinTemp" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="maxtemp" id="name" placeholder="enter a MaxTemp" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="rainfall" id="name" placeholder="enter a Rainfall" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="wgs" id="name" placeholder="enter a WindGustSpeed" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="ws9am" id="name" placeholder="enter a WindSpeed9am" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="ws3pm" id="name" placeholder="enter a WindSpeed3pm" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="hum9am" id="name" placeholder="enter a Humidity9am" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="hum3pm" id="name" placeholder="enter a Humidity3pm" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="pre9am" id="name" placeholder="enter a Pressure9am" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="pre3pm" id="name" placeholder="enter a Pressure3pm" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="Cloud9am" id="name" placeholder="enter a Cloud9am" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="Cloud3pm" id="name" placeholder="enter a Cloud3pm" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="Temp9am" id="name" placeholder="enter a Temp9am" required>
+                    <input class="form-input" type="number" oninvalid="alert('you must enter a word to get a meaning')" name="Temp3pm" id="name" placeholder="enter a Temp3pm" required>
+
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="location form-input" style="width:600px;" id="location" name="location" aria-label="Location">
+                                <option selected>Select Location</option>
+                                <option value= 0>Adelaide</option>
+                                <option value= 1>Albany</option>
+                                <option value= 2>Albury</option>
+                                <option value= 3>AliceSprings</option>
+                                <option value= 4>BadgerysCreek</option>
+                                <option value= 5>Ballarat</option>
+                                <option value= 6>Bendigo</option>
+                                <option value= 7>Brisbane</option>
+                                <option value= 8>Cairns</option>
+                                <option value= 9>Cobar</option>
+                                <option value= 10>CoffsHarbour</option>
+                                <option value= 11>Dartmoor</option>
+                                <option value= 12>Darwin</option>
+                                <option value= 13>GoldCoast</option>
+                                <option value= 14>Hobart</option>
+                                <option value= 15>Katherine</option>
+                                <option value= 16>Launceston</option>
+                                <option value= 17>Melbourne</option>
+                                <option value= 18>Melbourne Airport</option>
+                                <option value= 19>Mildura</option>
+                                <option value= 20>Moree</option>
+                                <option value= 21>MountGambier</option>
+                                <option value= 22>MountGinini</option>
+                                <option value= 23>Newcastle	</option>
+                                <option value= 24>Nhil</option>
+                                <option value= 25>NorahHead</option>
+                                <option value= 26>NorfolkIsland</option>
+                                <option value= 27>Nuriootpa</option>
+                                <option value= 28>PearceRAAF</option>
+                                <option value= 29>Penrith</option>
+                                <option value= 30>Perth</option>
+                                <option value= 31>Perth Airport</option>
+                                <option value= 32>Portland</option>
+                                <option value= 33>Richmond</option>
+                                <option value= 34>Sale</option>
+                                <option value= 35>Salmon Gums</option>
+                                <option value= 36>Sydney</option>
+                                <option value= 37>Sydney Airport</option>
+                                <option value= 38>Townsville</option>
+                                <option value= 39>Tuggeranong</option>
+                                <option value= 40>Uluru</option>
+                                <option value= 41>WaggaWagga</option>
+                                <option value= 42>Walpole</option>
+                                <option value= 43>Watsonia</option>
+                                <option value= 44>William Town</option>
+                                <option value= 45>Witchcliffe</option>
+                                <option value= 46>Wollongong</option>
+                                <option value= 47>Woomera</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="winddir9am form-input" style="width:600px;" id="winddir9am" name="winddir9am" aria-label="Wind Direction 9am">
+                                <option selected>Select Wind Direction at 9am</option>
+                                <option value= 3>N</option>
+                                <option value= 13>W</option>
+                                <option value= 8>S</option>
+                                <option value= 0>E</option>
+                                <option value= 7>NW</option>
+                                <option value= 4>NE</option>
+                                <option value= 12>SW</option>
+                                <option value= 9>SE</option>
+                                <option value= 6>NNW</option>
+                                <option value= 5>NNE</option>
+                                <option value= 11>SSW</option>
+                                <option value= 10>SSE</option>
+                                <option value= 14>WNW</option>
+                                <option value= 15>WSW</option>
+                                <option value= 1>ENE</option>
+                                <option value= 2>ESE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="winddir3pm form-input" style="width:600px;" id="winddir3pm" name = "winddir3pm" aria-label="Wind Direction at 3pm">
+                                <option selected>Select Wind Direction at 3pm</option>
+                                <option value= 3>N</option>
+                                <option value= 13>W</option>
+                                <option value= 8>S</option>
+                                <option value= 0>E</option>
+                                <option value= 7>NW</option>
+                                <option value= 4>NE</option>
+                                <option value= 12>SW</option>
+                                <option value= 9>SE</option>
+                                <option value= 6>NNW</option>
+                                <option value= 5>NNE</option>
+                                <option value= 11>SSW</option>
+                                <option value= 10>SSE</option>
+                                <option value= 14>WNW</option>
+                                <option value= 15>WSW</option>
+                                <option value= 1>ENE</option>
+                                <option value= 2>ESE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="windgustdir form-input" id="windgustdir" name = "windgustdir" aria-label="Wind Gust Direction" style="width:600px;">
+                                <option selected>Select Wind Gust Direction</option>
+                                <option value= 3>N</option>
+                                <option value= 13>W</option>
+                                <option value= 8>S</option>
+                                <option value= 0>E</option>
+                                <option value= 7>NW</option>
+                                <option value= 4>NE</option>
+                                <option value= 12>SW</option>
+                                <option value= 9>SE</option>
+                                <option value= 6>NNW</option>
+                                <option value= 5>NNE</option>
+                                <option value= 11>SSW</option>
+                                <option value= 10>SSE</option>
+                                <option value= 14>WNW</option>
+                                <option value= 15>WSW</option>
+                                <option value= 1>ENE</option>
+                                <option value= 2>ESE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 my-2">
+                        <div class="md-form">
+                            <select class="raintoday form-input" style="width:600px;" id="raintoday" name="raintoday" aria-label="Rain Today">
+                                <option selected>Did it Rain Today</option>
+                                <option value= 1>Yes</option>
+                                <option value= 0>No</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </center><br>
+                <button type="submit" class="btn btn-sm btn-dark" name="upload">Submit</button>
+                <button type="reset" class="btn btn-sm btn-dark">Reset</button>
+                <br>
+                
+                </form>
+                <div><p class="data1" name="name" id="name">{{variable}}</p></div><br>
+                </div>
+                </section>
+            </center>
+       
+    </div>
+</body>
+</html>
+<style>
+    body{
+     background: url("./static/dict.jpg")no-repeat center center/cover;
+    }
+    .form-input{
+        border:2px solid black;
+        width:250px;
+        border-radius: 8px;
+        height:80px;
+        font-weight: bold;
+        font-size:20px;
+        margin:10px;
+    }
+    button{
+        margin: 10px;
+        height: 70px;
+        width: 120px;
+        border: 3px solid black;
+        border-radius: 15px;
+        font-weight: bold;
+    }
+    .header{
+        height: 90px;
+        border: 2px solid blueviolet;
+        border-radius: 20px;
+        text-shadow: 5px 5px violet;
+        margin: 20px;
+        background-color:aqua ;    
+    }
+    .data1{
+        height:auto;
+        width:600px;
+        border-radius: 10px;
+        font-weight: bolder;
+        font-size:40px;
+        border:2px solid white;
+        background-color: white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    #navbar{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0px;
+}
+
+#navbar::before{
+    content: "";
+    background-color: black;
+    position: absolute;
+    top:0px;
+    left:0px;
+    height: 100%;
+    width:100%;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+#logo{
+    margin: 10px 34px;
+}
+
+#logo img{
+    height: 59px;
+    margin: 3px 6px;
+}
+
+#navbar ul{
+    display: flex;
+    font-family: 'Baloo Bhai', cursive;
+}
+
+#navbar ul li{ 
+    list-style: none;
+    font-size: 1.3rem;
+}
+
+#navbar ul li a{
+    color: white;
+    display: block;
+    padding: 3px 22px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+#navbar ul li a:hover{
+    color: black;
+    background-color: white;
+}
+</style>
